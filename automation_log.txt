@@ -1,0 +1,109 @@
+2026-03-25 02:40:03,754 [INFO] --- Automation Run Started ---
+2026-03-25 02:40:25,821 [INFO] --- Automation Run Started ---
+2026-03-25 02:41:12,858 [ERROR] STDOUT: 
+2026-03-25 02:41:12,858 [ERROR] STDERR: 2026-03-25 02:40:27 [INFO] main: ============================================================
+2026-03-25 02:40:27 [INFO] main:   YouTube -> Instagram Repurposer CLI
+2026-03-25 02:40:27 [INFO] main: ============================================================
+2026-03-25 02:40:27 [INFO] main: Source: Perplexity — Top 5 AI Coding Assistants for 2025
+2026-03-25 02:40:27 [INFO] main: Tone : professional and engaging
+2026-03-25 02:40:27 [INFO] core.content_engine: Querying Perplexity for: Top 5 AI Coding Assistants for 2025
+2026-03-25 02:40:27 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): api.perplexity.ai:443
+2026-03-25 02:40:39 [DEBUG] urllib3.connectionpool: https://api.perplexity.ai:443 "POST /chat/completions HTTP/1.1" 200 None
+2026-03-25 02:40:39 [INFO] core.content_engine: Perplexity returned 5829 chars of content
+2026-03-25 02:40:39 [INFO] core.content_engine: Generating Instagram carousel data (Tone: professional and engaging)...
+2026-03-25 02:40:40 [INFO] core.content_engine: Using model: gemini-2.5-flash
+2026-03-25 02:40:40 [INFO] google_genai.models: AFC is enabled with max remote calls: 10.
+2026-03-25 02:40:40 [DEBUG] httpcore.connection: connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=None socket_options=None
+2026-03-25 02:40:40 [DEBUG] httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000012EB4592900>
+2026-03-25 02:40:40 [DEBUG] httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x0000012EB40B5EB0> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-03-25 02:40:40 [DEBUG] httpcore.connection: start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000012EB4143C50>
+2026-03-25 02:40:40 [DEBUG] httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2026-03-25 02:40:40 [DEBUG] httpcore.http11: send_request_headers.complete
+2026-03-25 02:40:40 [DEBUG] httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2026-03-25 02:40:40 [DEBUG] httpcore.http11: send_request_body.complete
+2026-03-25 02:40:40 [DEBUG] httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2026-03-25 02:40:50 [DEBUG] httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'X-Gemini-Service-Tier', b'standard'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 25 Mar 2026 06:40:50 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=10574'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-03-25 02:40:50 [INFO] httpx: HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-03-25 02:40:50 [DEBUG] httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2026-03-25 02:40:50 [DEBUG] httpcore.http11: receive_response_body.complete
+2026-03-25 02:40:50 [DEBUG] httpcore.http11: response_closed.started
+2026-03-25 02:40:50 [DEBUG] httpcore.http11: response_closed.complete
+2026-03-25 02:40:50 [INFO] core.content_engine: Generated 3 carousel slides.
+2026-03-25 02:40:50 [DEBUG] httpcore.connection: close.started
+2026-03-25 02:40:50 [DEBUG] httpcore.connection: close.complete
+2026-03-25 02:40:50 [INFO] core.visual_engine: Composing slide 1/3: SUPERCHARGE YOUR CODING WITH AI
+2026-03-25 02:40:51 [DEBUG] httpcore.connection: connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=None socket_options=None
+2026-03-25 02:40:51 [DEBUG] httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000012EB459F610>
+2026-03-25 02:40:51 [DEBUG] httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x0000012EB45501F0> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-03-25 02:40:51 [DEBUG] httpcore.connection: start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000012EB41AAEA0>
+2026-03-25 02:40:51 [DEBUG] httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2026-03-25 02:40:51 [DEBUG] httpcore.http11: send_request_headers.complete
+2026-03-25 02:40:51 [DEBUG] httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2026-03-25 02:40:51 [DEBUG] httpcore.http11: send_request_body.complete
+2026-03-25 02:40:51 [DEBUG] httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2026-03-25 02:41:00 [DEBUG] httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 25 Mar 2026 06:41:00 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=9400'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-03-25 02:41:00 [INFO] httpx: HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict "HTTP/1.1 200 OK"
+2026-03-25 02:41:00 [DEBUG] httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2026-03-25 02:41:01 [DEBUG] httpcore.http11: receive_response_body.complete
+2026-03-25 02:41:01 [DEBUG] httpcore.http11: response_closed.started
+2026-03-25 02:41:01 [DEBUG] httpcore.http11: response_closed.complete
+2026-03-25 02:41:01 [DEBUG] PIL.PngImagePlugin: STREAM b'IHDR' 16 13
+2026-03-25 02:41:01 [DEBUG] PIL.PngImagePlugin: STREAM b'zTXt' 41 131
+2026-03-25 02:41:01 [DEBUG] PIL.PngImagePlugin: STREAM b'iTXt' 184 461
+2026-03-25 02:41:01 [DEBUG] PIL.PngImagePlugin: STREAM b'caBX' 657 6010
+2026-03-25 02:41:01 [DEBUG] PIL.PngImagePlugin: b'caBX' 657 6010 (unknown)
+2026-03-25 02:41:01 [DEBUG] PIL.PngImagePlugin: STREAM b'IDAT' 6679 8192
+2026-03-25 02:41:01 [DEBUG] httpcore.connection: close.started
+2026-03-25 02:41:01 [DEBUG] httpcore.connection: close.complete
+2026-03-25 02:41:01 [INFO] core.visual_engine:   Imagen image downloaded ((1408, 768))
+2026-03-25 02:41:01 [INFO] core.visual_engine:   Uploading slide 1 to catbox.moe...
+2026-03-25 02:41:01 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): catbox.moe:443
+2026-03-25 02:41:02 [DEBUG] urllib3.connectionpool: https://catbox.moe:443 "POST /user/api.php HTTP/1.1" 200 None
+2026-03-25 02:41:02 [INFO] core.visual_engine:   Slide 1 ready: https://files.catbox.moe/j42bop.png
+2026-03-25 02:41:02 [INFO] core.visual_engine: Composing slide 2/3: INTELLIGENT DEBUGGING & TESTING
+2026-03-25 02:41:03 [DEBUG] httpcore.connection: connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=None socket_options=None
+2026-03-25 02:41:03 [DEBUG] httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000012EB45D5F30>
+2026-03-25 02:41:03 [DEBUG] httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x0000012EB45E6150> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-03-25 02:41:03 [DEBUG] httpcore.connection: start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000012EB4630CB0>
+2026-03-25 02:41:03 [DEBUG] httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2026-03-25 02:41:03 [DEBUG] httpcore.http11: send_request_headers.complete
+2026-03-25 02:41:03 [DEBUG] httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2026-03-25 02:41:03 [DEBUG] httpcore.http11: send_request_body.complete
+2026-03-25 02:41:03 [DEBUG] httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2026-03-25 02:41:10 [DEBUG] httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Wed, 25 Mar 2026 06:41:11 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=7849'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-03-25 02:41:10 [INFO] httpx: HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict "HTTP/1.1 200 OK"
+2026-03-25 02:41:10 [DEBUG] httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2026-03-25 02:41:11 [DEBUG] httpcore.http11: receive_response_body.complete
+2026-03-25 02:41:11 [DEBUG] httpcore.http11: response_closed.started
+2026-03-25 02:41:11 [DEBUG] httpcore.http11: response_closed.complete
+2026-03-25 02:41:11 [DEBUG] PIL.PngImagePlugin: STREAM b'IHDR' 16 13
+2026-03-25 02:41:11 [DEBUG] PIL.PngImagePlugin: STREAM b'zTXt' 41 131
+2026-03-25 02:41:11 [DEBUG] PIL.PngImagePlugin: STREAM b'iTXt' 184 461
+2026-03-25 02:41:11 [DEBUG] PIL.PngImagePlugin: STREAM b'caBX' 657 6010
+2026-03-25 02:41:11 [DEBUG] PIL.PngImagePlugin: b'caBX' 657 6010 (unknown)
+2026-03-25 02:41:11 [DEBUG] PIL.PngImagePlugin: STREAM b'IDAT' 6679 8192
+2026-03-25 02:41:11 [DEBUG] httpcore.connection: close.started
+2026-03-25 02:41:11 [DEBUG] httpcore.connection: close.complete
+2026-03-25 02:41:11 [INFO] core.visual_engine:   Imagen image downloaded ((1408, 768))
+2026-03-25 02:41:11 [INFO] core.visual_engine:   Uploading slide 2 to catbox.moe...
+2026-03-25 02:41:11 [DEBUG] urllib3.connectionpool: Starting new HTTPS connection (1): catbox.moe:443
+2026-03-25 02:41:12 [DEBUG] urllib3.connectionpool: https://catbox.moe:443 "POST /user/api.php HTTP/1.1" 200 None
+2026-03-25 02:41:12 [INFO] core.visual_engine:   Slide 2 ready: https://files.catbox.moe/xxd9fr.png
+2026-03-25 02:41:12 [INFO] core.visual_engine: Composing slide 3/3: FOLLOW FOR MORE
+2026-03-25 02:41:12 [ERROR] main: Pipeline failed during extraction/generation: name 'RESOURCES_DIR' is not defined
+
+2026-03-25 02:41:12,862 [INFO] --- Automation Run Failed ---
+2026-03-25 02:43:11,827 [INFO] --- Automation Run Started ---
+2026-03-25 02:44:55,515 [INFO] --- Automation Run Completed Successfully ---
+2026-03-25 03:03:20,614 [INFO] --- Automation Run Started ---
+2026-03-25 19:39:02,816 [INFO] --- Automation Run Started ---
+2026-03-25 19:39:02,819 [INFO] Starting automation for topic: Top 5 claude code features you must try today
+2026-03-25 19:40:43,328 [INFO] Successfully published automated post.
+2026-03-25 19:40:43,328 [INFO] --- Automation Run Completed Successfully ---
+2026-03-25 19:50:27,772 [INFO] --- Automation Run Started ---
+2026-03-25 19:50:27,772 [INFO] Notification: Starting Automation... - Checking queue and preparing to publish.
+2026-03-25 19:50:27,773 [INFO] Starting automation for topic: How Gemini 3 pro version is changing AI automation for developers
+2026-03-25 19:52:15,861 [INFO] Successfully published automated post.
+2026-03-25 19:52:15,861 [INFO] Automation Run Completed Successfully for: How Gemini 3 pro version is changing AI automation for developers
+2026-03-25 19:52:15,861 [INFO] Notification: Post Published Successfully! - Topic: How Gemini 3 pro version is changing AI automation for developers
+Check your Instagram feed.

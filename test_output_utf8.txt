@@ -1,0 +1,752 @@
+﻿python : 2026-03-25 
+03:25:50 [INFO] 
+main: ===============
+=====================
+=====================
+===
+At line:1 char:1
++ python main.py 
+--perplexity "Top 3 
+Claude Code features 
+for 2026" --v ...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (2026-03   
+ -25 03:2...=====    
+==========:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+2026-03-25 03:25:50 
+[INFO] main:   
+YouTube -> Instagram 
+Repurposer CLI
+2026-03-25 03:25:50 
+[INFO] main: ========
+=====================
+=====================
+==========
+2026-03-25 03:25:50 
+[INFO] main: Source: 
+Perplexity ù Top 3 
+Claude Code features 
+for 2026
+2026-03-25 03:25:50 
+[INFO] main: Tone : 
+professional and 
+engaging
+2026-03-25 03:25:50 
+[INFO] 
+core.content_engine: 
+Querying Perplexity 
+for: Top 3 Claude 
+Code features for 
+2026
+2026-03-25 03:25:50 
+[DEBUG] urllib3.conne
+ctionpool: Starting 
+new HTTPS connection 
+(1): 
+api.perplexity.ai:443
+2026-03-25 03:25:59 
+[DEBUG] urllib3.conne
+ctionpool: https://ap
+i.perplexity.ai:443 
+"POST 
+/chat/completions 
+HTTP/1.1" 200 None
+2026-03-25 03:25:59 
+[INFO] 
+core.content_engine: 
+Perplexity returned 
+3949 chars of content
+2026-03-25 03:25:59 
+[INFO] 
+core.content_engine: 
+Generating Instagram 
+carousel data (Tone: 
+professional and 
+engaging)...
+2026-03-25 03:26:00 
+[INFO] 
+core.content_engine: 
+Using model: 
+gemini-2.5-flash
+2026-03-25 03:26:00 
+[INFO] 
+google_genai.models: 
+AFC is enabled with 
+max remote calls: 10.
+2026-03-25 03:26:00 
+[DEBUG] 
+httpcore.connection: 
+connect_tcp.started h
+ost='generativelangua
+ge.googleapis.com' 
+port=443 
+local_address=None 
+timeout=None 
+socket_options=None
+2026-03-25 03:26:00 
+[DEBUG] 
+httpcore.connection: 
+connect_tcp.complete 
+return_value=<httpcor
+e._backends.sync.Sync
+Stream object at 
+0x000001AC032E2900>
+2026-03-25 03:26:00 
+[DEBUG] 
+httpcore.connection: 
+start_tls.started ssl
+_context=<ssl.SSLCont
+ext object at 
+0x000001AC02E05EB0> s
+erver_hostname='gener
+ativelanguage.googlea
+pis.com' timeout=None
+2026-03-25 03:26:00 
+[DEBUG] 
+httpcore.connection: 
+start_tls.complete re
+turn_value=<httpcore.
+_backends.sync.SyncSt
+ream object at 
+0x000001AC02E97C50>
+2026-03-25 03:26:00 
+[DEBUG] 
+httpcore.http11: send
+_request_headers.star
+ted request=<Request 
+[b'POST']>
+2026-03-25 03:26:00 
+[DEBUG] 
+httpcore.http11: send
+_request_headers.comp
+lete
+2026-03-25 03:26:00 
+[DEBUG] 
+httpcore.http11: send
+_request_body.started
+ request=<Request 
+[b'POST']>
+2026-03-25 03:26:00 
+[DEBUG] 
+httpcore.http11: send
+_request_body.complet
+e
+2026-03-25 03:26:00 
+[DEBUG] 
+httpcore.http11: rece
+ive_response_headers.
+started 
+request=<Request 
+[b'POST']>
+2026-03-25 03:26:13 
+[DEBUG] 
+httpcore.http11: rece
+ive_response_headers.
+complete return_value
+=(b'HTTP/1.1', 200, 
+b'OK', [(b'X-Gemini-S
+ervice-Tier', 
+b'standard'), 
+(b'Content-Type', 
+b'application/json; 
+charset=UTF-8'), 
+(b'Vary', 
+b'Origin'), 
+(b'Vary', 
+b'X-Origin'), 
+(b'Vary', 
+b'Referer'), (b'Conte
+nt-Encoding', 
+b'gzip'), (b'Date', 
+b'Wed, 25 Mar 2026 
+07:26:13 GMT'), 
+(b'Server', 
+b'scaffolding on 
+HTTPServer2'), (b'X-X
+SS-Protection', 
+b'0'), 
+(b'X-Frame-Options', 
+b'SAMEORIGIN'), (b'X-
+Content-Type-Options'
+, b'nosniff'), 
+(b'Server-Timing', 
+b'gfet4t7; 
+dur=13294'), 
+(b'Alt-Svc', 
+b'h3=":443"; ma=25920
+00,h3-29=":443"; 
+ma=2592000'), (b'Tran
+sfer-Encoding', 
+b'chunked')])
+2026-03-25 03:26:13 
+[INFO] httpx: HTTP 
+Request: POST https:/
+/generativelanguage.g
+oogleapis.com/v1beta/
+models/gemini-2.5-fla
+sh:generateContent 
+"HTTP/1.1 200 OK"
+2026-03-25 03:26:13 
+[DEBUG] 
+httpcore.http11: rece
+ive_response_body.sta
+rted 
+request=<Request 
+[b'POST']>
+2026-03-25 03:26:13 
+[DEBUG] 
+httpcore.http11: rece
+ive_response_body.com
+plete
+2026-03-25 03:26:13 
+[DEBUG] 
+httpcore.http11: resp
+onse_closed.started
+2026-03-25 03:26:13 
+[DEBUG] 
+httpcore.http11: resp
+onse_closed.complete
+2026-03-25 03:26:13 
+[INFO] 
+core.content_engine: 
+Generated 3 carousel 
+slides.
+2026-03-25 03:26:13 
+[DEBUG] 
+httpcore.connection: 
+close.started
+2026-03-25 03:26:13 
+[DEBUG] 
+httpcore.connection: 
+close.complete
+2026-03-25 03:26:13 
+[INFO] 
+core.visual_engine: 
+Composing slide 1/3: 
+VISUALIZE YOUR CODE, 
+INSTANTLY.
+2026-03-25 03:26:14 
+[DEBUG] 
+httpcore.connection: 
+connect_tcp.started h
+ost='generativelangua
+ge.googleapis.com' 
+port=443 
+local_address=None 
+timeout=None 
+socket_options=None
+2026-03-25 03:26:14 
+[DEBUG] 
+httpcore.connection: 
+connect_tcp.complete 
+return_value=<httpcor
+e._backends.sync.Sync
+Stream object at 
+0x000001AC032EF750>
+2026-03-25 03:26:14 
+[DEBUG] 
+httpcore.connection: 
+start_tls.started ssl
+_context=<ssl.SSLCont
+ext object at 
+0x000001AC032A01F0> s
+erver_hostname='gener
+ativelanguage.googlea
+pis.com' timeout=None
+2026-03-25 03:26:14 
+[DEBUG] 
+httpcore.connection: 
+start_tls.complete re
+turn_value=<httpcore.
+_backends.sync.SyncSt
+ream object at 
+0x000001AC02EFAEA0>
+2026-03-25 03:26:14 
+[DEBUG] 
+httpcore.http11: send
+_request_headers.star
+ted request=<Request 
+[b'POST']>
+2026-03-25 03:26:14 
+[DEBUG] 
+httpcore.http11: send
+_request_headers.comp
+lete
+2026-03-25 03:26:14 
+[DEBUG] 
+httpcore.http11: send
+_request_body.started
+ request=<Request 
+[b'POST']>
+2026-03-25 03:26:14 
+[DEBUG] 
+httpcore.http11: send
+_request_body.complet
+e
+2026-03-25 03:26:14 
+[DEBUG] 
+httpcore.http11: rece
+ive_response_headers.
+started 
+request=<Request 
+[b'POST']>
+2026-03-25 03:26:26 
+[DEBUG] 
+httpcore.http11: rece
+ive_response_headers.
+complete return_value
+=(b'HTTP/1.1', 200, 
+b'OK', 
+[(b'Content-Type', 
+b'application/json; 
+charset=UTF-8'), 
+(b'Vary', 
+b'Origin'), 
+(b'Vary', 
+b'X-Origin'), 
+(b'Vary', 
+b'Referer'), (b'Conte
+nt-Encoding', 
+b'gzip'), (b'Date', 
+b'Wed, 25 Mar 2026 
+07:26:26 GMT'), 
+(b'Server', 
+b'scaffolding on 
+HTTPServer2'), (b'X-X
+SS-Protection', 
+b'0'), 
+(b'X-Frame-Options', 
+b'SAMEORIGIN'), (b'X-
+Content-Type-Options'
+, b'nosniff'), 
+(b'Server-Timing', 
+b'gfet4t7; 
+dur=12154'), 
+(b'Alt-Svc', 
+b'h3=":443"; ma=25920
+00,h3-29=":443"; 
+ma=2592000'), (b'Tran
+sfer-Encoding', 
+b'chunked')])
+2026-03-25 03:26:26 
+[INFO] httpx: HTTP 
+Request: POST https:/
+/generativelanguage.g
+oogleapis.com/v1beta/
+models/imagen-4.0-gen
+erate-001:predict 
+"HTTP/1.1 200 OK"
+2026-03-25 03:26:26 
+[DEBUG] 
+httpcore.http11: rece
+ive_response_body.sta
+rted 
+request=<Request 
+[b'POST']>
+2026-03-25 03:26:26 
+[DEBUG] 
+httpcore.http11: rece
+ive_response_body.com
+plete
+2026-03-25 03:26:26 
+[DEBUG] 
+httpcore.http11: resp
+onse_closed.started
+2026-03-25 03:26:26 
+[DEBUG] 
+httpcore.http11: resp
+onse_closed.complete
+2026-03-25 03:26:26 
+[DEBUG] 
+PIL.PngImagePlugin: 
+STREAM b'IHDR' 16 13
+2026-03-25 03:26:26 
+[DEBUG] 
+PIL.PngImagePlugin: 
+STREAM b'zTXt' 41 131
+2026-03-25 03:26:26 
+[DEBUG] 
+PIL.PngImagePlugin: 
+STREAM b'iTXt' 184 
+461
+2026-03-25 03:26:26 
+[DEBUG] 
+PIL.PngImagePlugin: 
+STREAM b'caBX' 657 
+6011
+2026-03-25 03:26:26 
+[DEBUG] 
+PIL.PngImagePlugin: 
+b'caBX' 657 6011 
+(unknown)
+2026-03-25 03:26:26 
+[DEBUG] 
+PIL.PngImagePlugin: 
+STREAM b'IDAT' 6680 
+8192
+2026-03-25 03:26:26 
+[DEBUG] 
+httpcore.connection: 
+close.started
+2026-03-25 03:26:26 
+[DEBUG] 
+httpcore.connection: 
+close.complete
+2026-03-25 03:26:26 
+[INFO] 
+core.visual_engine:  
+ Imagen image 
+downloaded ((1408, 
+768))
+2026-03-25 03:26:27 
+[INFO] 
+core.visual_engine:  
+ Uploading slide 1 
+to catbox.moe...
+2026-03-25 03:26:27 
+[DEBUG] urllib3.conne
+ctionpool: Starting 
+new HTTPS connection 
+(1): catbox.moe:443
+2026-03-25 03:26:28 
+[DEBUG] urllib3.conne
+ctionpool: https://ca
+tbox.moe:443 "POST 
+/user/api.php 
+HTTP/1.1" 200 None
+2026-03-25 03:26:28 
+[INFO] 
+core.visual_engine:  
+ Slide 1 ready: https
+://files.catbox.moe/r
+nig3a.png
+2026-03-25 03:26:28 
+[INFO] 
+core.visual_engine: 
+Composing slide 2/3: 
+THE NEW KING OF CODE?
+2026-03-25 03:26:28 
+[DEBUG] 
+httpcore.connection: 
+connect_tcp.started h
+ost='generativelangua
+ge.googleapis.com' 
+port=443 
+local_address=None 
+timeout=None 
+socket_options=None
+2026-03-25 03:26:28 
+[DEBUG] 
+httpcore.connection: 
+connect_tcp.complete 
+return_value=<httpcor
+e._backends.sync.Sync
+Stream object at 
+0x000001AC03325F30>
+2026-03-25 03:26:28 
+[DEBUG] 
+httpcore.connection: 
+start_tls.started ssl
+_context=<ssl.SSLCont
+ext object at 
+0x000001AC03335FD0> s
+erver_hostname='gener
+ativelanguage.googlea
+pis.com' timeout=None
+2026-03-25 03:26:28 
+[DEBUG] 
+httpcore.connection: 
+start_tls.complete re
+turn_value=<httpcore.
+_backends.sync.SyncSt
+ream object at 
+0x000001AC03384A70>
+2026-03-25 03:26:28 
+[DEBUG] 
+httpcore.http11: send
+_request_headers.star
+ted request=<Request 
+[b'POST']>
+2026-03-25 03:26:28 
+[DEBUG] 
+httpcore.http11: send
+_request_headers.comp
+lete
+2026-03-25 03:26:28 
+[DEBUG] 
+httpcore.http11: send
+_request_body.started
+ request=<Request 
+[b'POST']>
+2026-03-25 03:26:28 
+[DEBUG] 
+httpcore.http11: send
+_request_body.complet
+e
+2026-03-25 03:26:28 
+[DEBUG] 
+httpcore.http11: rece
+ive_response_headers.
+started 
+request=<Request 
+[b'POST']>
+2026-03-25 03:26:37 
+[DEBUG] 
+httpcore.http11: rece
+ive_response_headers.
+complete return_value
+=(b'HTTP/1.1', 200, 
+b'OK', 
+[(b'Content-Type', 
+b'application/json; 
+charset=UTF-8'), 
+(b'Vary', 
+b'Origin'), 
+(b'Vary', 
+b'X-Origin'), 
+(b'Vary', 
+b'Referer'), (b'Conte
+nt-Encoding', 
+b'gzip'), (b'Date', 
+b'Wed, 25 Mar 2026 
+07:26:38 GMT'), 
+(b'Server', 
+b'scaffolding on 
+HTTPServer2'), (b'X-X
+SS-Protection', 
+b'0'), 
+(b'X-Frame-Options', 
+b'SAMEORIGIN'), (b'X-
+Content-Type-Options'
+, b'nosniff'), 
+(b'Server-Timing', 
+b'gfet4t7; 
+dur=9205'), 
+(b'Alt-Svc', 
+b'h3=":443"; ma=25920
+00,h3-29=":443"; 
+ma=2592000'), (b'Tran
+sfer-Encoding', 
+b'chunked')])
+2026-03-25 03:26:37 
+[INFO] httpx: HTTP 
+Request: POST https:/
+/generativelanguage.g
+oogleapis.com/v1beta/
+models/imagen-4.0-gen
+erate-001:predict 
+"HTTP/1.1 200 OK"
+2026-03-25 03:26:37 
+[DEBUG] 
+httpcore.http11: rece
+ive_response_body.sta
+rted 
+request=<Request 
+[b'POST']>
+2026-03-25 03:26:38 
+[DEBUG] 
+httpcore.http11: rece
+ive_response_body.com
+plete
+2026-03-25 03:26:38 
+[DEBUG] 
+httpcore.http11: resp
+onse_closed.started
+2026-03-25 03:26:38 
+[DEBUG] 
+httpcore.http11: resp
+onse_closed.complete
+2026-03-25 03:26:38 
+[DEBUG] 
+PIL.PngImagePlugin: 
+STREAM b'IHDR' 16 13
+2026-03-25 03:26:38 
+[DEBUG] 
+PIL.PngImagePlugin: 
+STREAM b'zTXt' 41 131
+2026-03-25 03:26:38 
+[DEBUG] 
+PIL.PngImagePlugin: 
+STREAM b'iTXt' 184 
+461
+2026-03-25 03:26:38 
+[DEBUG] 
+PIL.PngImagePlugin: 
+STREAM b'caBX' 657 
+6011
+2026-03-25 03:26:38 
+[DEBUG] 
+PIL.PngImagePlugin: 
+b'caBX' 657 6011 
+(unknown)
+2026-03-25 03:26:38 
+[DEBUG] 
+PIL.PngImagePlugin: 
+STREAM b'IDAT' 6680 
+8192
+2026-03-25 03:26:38 
+[DEBUG] 
+httpcore.connection: 
+close.started
+2026-03-25 03:26:38 
+[DEBUG] 
+httpcore.connection: 
+close.complete
+2026-03-25 03:26:38 
+[INFO] 
+core.visual_engine:  
+ Imagen image 
+downloaded ((1408, 
+768))
+2026-03-25 03:26:38 
+[INFO] 
+core.visual_engine:  
+ Uploading slide 2 
+to catbox.moe...
+2026-03-25 03:26:38 
+[DEBUG] urllib3.conne
+ctionpool: Starting 
+new HTTPS connection 
+(1): catbox.moe:443
+2026-03-25 03:26:39 
+[DEBUG] urllib3.conne
+ctionpool: https://ca
+tbox.moe:443 "POST 
+/user/api.php 
+HTTP/1.1" 200 None
+2026-03-25 03:26:39 
+[INFO] 
+core.visual_engine:  
+ Slide 2 ready: https
+://files.catbox.moe/j
+mfcdz.png
+2026-03-25 03:26:39 
+[INFO] 
+core.visual_engine: 
+Composing slide 3/3: 
+FOLLOW FOR MORE
+2026-03-25 03:26:39 
+[INFO] 
+core.visual_engine:  
+ Using static CTA 
+slide from resources 
+(saving API tokens)
+2026-03-25 03:26:39 
+[DEBUG] urllib3.conne
+ctionpool: Starting 
+new HTTPS connection 
+(1): catbox.moe:443
+2026-03-25 03:26:40 
+[DEBUG] urllib3.conne
+ctionpool: https://ca
+tbox.moe:443 "POST 
+/user/api.php 
+HTTP/1.1" 200 None
+2026-03-25 03:26:40 
+[INFO] 
+core.visual_engine:  
+ Slide 3 ready: https
+://files.catbox.moe/3
+oo9tb.png
+2026-03-25 03:26:40 
+[INFO] main: 
+=====================
+=====================
+==================
+2026-03-25 03:26:40 
+[INFO] main:    POST 
+REVIEW (CAROUSEL)
+2026-03-25 03:26:40 
+[INFO] main: ========
+=====================
+=====================
+==========
+2026-03-25 03:26:40 
+[INFO] main: 
+Downloading 3 images 
+for your review to: 
+C:\Users\cc\One 
+Drive devm905\OneDriv
+e\Desktop\AI 
+Automated Social 
+Media Generator\carou
+sel_review
+2026-03-25 03:26:40 
+[DEBUG] urllib3.conne
+ctionpool: Starting 
+new HTTPS connection 
+(1): 
+files.catbox.moe:443
+2026-03-25 03:26:41 
+[DEBUG] urllib3.conne
+ctionpool: https://fi
+les.catbox.moe:443 
+"GET /rnig3a.png 
+HTTP/1.1" 200 769441
+2026-03-25 03:26:41 
+[DEBUG] urllib3.conne
+ctionpool: Starting 
+new HTTPS connection 
+(1): 
+files.catbox.moe:443
+2026-03-25 03:26:42 
+[DEBUG] urllib3.conne
+ctionpool: https://fi
+les.catbox.moe:443 
+"GET /jmfcdz.png 
+HTTP/1.1" 200 897929
+2026-03-25 03:26:42 
+[DEBUG] urllib3.conne
+ctionpool: Starting 
+new HTTPS connection 
+(1): 
+files.catbox.moe:443
+2026-03-25 03:26:43 
+[DEBUG] urllib3.conne
+ctionpool: https://fi
+les.catbox.moe:443 
+"GET /3oo9tb.png 
+HTTP/1.1" 200 42730
+2026-03-25 03:26:43 
+[INFO] main: ========
+=====================
+=====================
+==========
+
+Caption:
+What if the future of AI coding isn't just about writing code, but *seeing* it come alive, *leading* the pack, and *controlling* its very effort? ≡ƒÜÇ
+
+Just days ago, in March 2026, a silent revolution unfolded in the heart of AI development. Claude, powered by its formidable 4.6 models, unveiled three game-changing features that are reshaping how we build, debug, and optimize.
+
+Γ£¿ First, the magic of **Inline Visualizations and Artifacts** ΓÇô suddenly, your abstract ideas become interactive charts and UI components, editable right within your chat. Imagine prototyping a new app UI or a complex workflow diagram, all generated and tweaked on the fly!
+
+≡ƒææ Then, the whispers turned to shouts: **Claude Code was declared the undisputed champion of AI coding assistance.** Surpassing giants, it now processes entire codebases with unparalleled efficiency, making debugging and generation a breeze for 75% of small companies.
+
+≡ƒºá And finally, the ultimate control: **Effort Controls and Context Compaction**. These features give you the reins to fine-tune AI's intelligence for speed or precision, even in the most demanding, long-running projects. No more performance drops for sustained tasks!
+
+This isn't just an update; it's a new chapter for creators, developers, and anyone ready to truly *master* their workflow.
+
+Ready to unlock these capabilities and transform your productivity? Dive in and experience the future! ≡ƒæç
+
+#ClaudeAI #AICoding #AIdevelopment #ProductivityHacks #TechUpdates
+
+Slide 1: C:\Users\cc\One Drive devm905\OneDrive\Desktop\AI Automated Social Media Generator\carousel_review\slide_1.jpg
+Slide 2: C:\Users\cc\One Drive devm905\OneDrive\Desktop\AI Automated Social Media Generator\carousel_review\slide_2.jpg
+Slide 3: C:\Users\cc\One Drive devm905\OneDrive\Desktop\AI Automated Social Media Generator\carousel_review\slide_3.jpg
+
+2026-03-25 03:26:43 
+[INFO] main: 
+Cancelled by user. 
+No post published.
+Publish post? (yes/no): 

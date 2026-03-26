@@ -1,0 +1,13 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+output/
+carousel_review/
+temp/
+automation.lock
+*.log
+_temp_post.png
+*.jpg
+*.png

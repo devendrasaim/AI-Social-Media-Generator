@@ -1,0 +1,29 @@
+timestamp,youtube_url,platform,post_url,post_id,status
+2026-03-21T09:17:12.762084,https://youtube.com/watch?v=4Zaoo0YbYaw,instagram,FAILED,N/A,422 Client Error: Unprocessable Entity for url: https://backend.blotato.com/v2/posts
+2026-03-21T09:17:12.762130,https://youtube.com/watch?v=4Zaoo0YbYaw,facebook,FAILED,N/A,400 Client Error: Bad Request for url: https://backend.blotato.com/v2/posts
+2026-03-21T09:52:19.507736,https://youtube.com/watch?v=4Zaoo0YbYaw,instagram,FAILED,N/A,422 Client Error: Unprocessable Entity for url: https://backend.blotato.com/v2/posts
+2026-03-21T10:01:56.221394,https://youtube.com/watch?v=4Zaoo0YbYaw,instagram,FAILED,N/A,Failed with status: failed
+2026-03-21T10:07:53.522604,https://youtube.com/watch?v=4Zaoo0YbYaw,instagram,FAILED,N/A,Failed with status: failed
+2026-03-21T10:10:20.258370,https://youtube.com/watch?v=4Zaoo0YbYaw,instagram,FAILED,N/A,Failed with status: failed
+2026-03-21T10:11:42.280328,https://youtube.com/watch?v=4Zaoo0YbYaw,instagram,FAILED,N/A,Failed with status: failed
+2026-03-21T10:13:31.439310,https://youtube.com/watch?v=4Zaoo0YbYaw,instagram,FAILED,N/A,Failed with status: failed
+2026-03-21T10:20:11.845389,https://youtube.com/watch?v=4Zaoo0YbYaw,instagram,FAILED,N/A,Failed with status: failed
+2026-03-21T10:21:17.149057,https://youtube.com/watch?v=4Zaoo0YbYaw,instagram,FAILED,N/A,Failed with status: failed
+2026-03-21T10:22:22.515132,https://youtube.com/watch?v=4Zaoo0YbYaw,instagram,FAILED,N/A,Failed with status: failed
+2026-03-21T10:23:24.750782,https://youtube.com/watch?v=4Zaoo0YbYaw,instagram,FAILED,N/A,Failed with status: failed
+2026-03-21T10:25:49.166742,https://youtube.com/watch?v=4Zaoo0YbYaw,instagram,N/A,8754e108-a926-486f-8a82-30827d6813e6,published
+2026-03-21T10:36:49.905079,https://www.youtube.com/watch?v=4Zaoo0YbYaw,instagram,FAILED,N/A,Failed with status: failed
+2026-03-21T10:39:48.757399,https://www.youtube.com/watch?v=4Zaoo0YbYaw,instagram,FAILED,N/A,Failed with status: failed
+2026-03-21T10:44:10.022737,https://www.youtube.com/watch?v=4Zaoo0YbYaw,instagram,FAILED,N/A,Failed with status: failed
+2026-03-21T11:41:37.600820,https://youtube.com/watch?v=4Zaoo0YbYaw,instagram,N/A,15ef89aa-a166-44c4-9385-4b2dad0fbb23,published
+2026-03-23T21:04:52.684564,https://youtube.com/watch?v=4Zaoo0YbYaw,instagram,N/A,c88431f0-28ea-407b-9289-dd0d38487c72,published
+2026-03-24T00:21:37.657128,https://youtube.com/watch?v=4Zaoo0YbYaw,instagram,FAILED,N/A,Failed with status: failed
+2026-03-24T00:35:56.717523,https://youtube.com/watch?v=4Zaoo0YbYaw,instagram,N/A,3ce18543-63f4-424f-81af-2d41ecf1cf2b,published
+2026-03-24T01:09:09.311237,https://www.youtube.com/watch?v=_Vccl1Iulws,instagram,FAILED,N/A,422 Client Error: Unprocessable Entity for url: https://backend.blotato.com/v2/posts
+2026-03-24T01:18:42.958938,https://www.youtube.com/watch?v=_Vccl1Iulws,instagram,N/A,6c7e0789-8a70-4575-86a2-21812e96e194,published
+2026-03-25T01:25:10.305765,perplexity:future of space travel,instagram,N/A,f15ba7a0-824d-4f9c-a077-a8ef0742387e,published
+2026-03-25T02:22:51.180548,perplexity:Latest updates of NVEDIA,instagram,N/A,9f8566f7-457e-4178-9118-3f28b07730c1,published
+2026-03-25T02:44:55.246130,perplexity:Top 5 AI Coding Assistants for 2026,instagram,N/A,5d5ac0fa-ba4e-47d0-b819-d0d37ce0e554,published
+2026-03-25T03:34:10.726602,perplexity:Top 3 Claude Code features for 2026,instagram,N/A,59abc609-c1b6-4d37-9b9c-1f4eba7ae757,published
+2026-03-25T19:40:43.009929,perplexity:Top 5 claude code features you must try today,instagram,N/A,987e5317-1cfd-45c5-b53d-c3fe329a65cb,published
+2026-03-25T19:52:15.617483,perplexity:How Gemini 3 pro version is changing AI automation for developers,instagram,N/A,14cf1a5e-e777-4f24-ab7b-1f2a2e7f1c2d,published
