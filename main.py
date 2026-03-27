@@ -113,6 +113,10 @@ def main():
     if results:
         log_to_csv(LOG_FILE, source_url, results)
         logger.info(f"\nDone! Post log saved to: {LOG_FILE}")
+        all_failed = all(r.get("post_url") == "FAILED" or r.get("status", "").startswith("FAILED") or r.get("status") == "failed" for r in results)
+        if all_failed:
+            logger.error("All publish attempts failed. Check logs above for details.")
+            sys.exit(1)
     else:
         logger.error("No results returned. Ensure Instagram is connected.")
         sys.exit(1)

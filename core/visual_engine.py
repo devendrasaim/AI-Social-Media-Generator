@@ -11,6 +11,8 @@ from google import genai
 from google.genai import types
 from .config import GEMINI_API_KEY, IMAGEN_MODEL, FONTS_DIR, RESOURCES_DIR, TEMP_DIR
 
+logger = logging.getLogger(__name__)
+
 # Canvas
 W, H = 1080, 1080
 
@@ -67,7 +69,10 @@ class VisualEngine:
             static_cta_path = os.path.join(RESOURCES_DIR, "last_slide_cta.jpg")
             if os.path.exists(static_cta_path):
                 logger.info("  Using static CTA slide from resources (saving API tokens)")
-                return self._upload_to_catbox(static_cta_path)
+                try:
+                    return self._upload_to_catbox(static_cta_path)
+                except Exception as e:
+                    logger.warning(f"  Static CTA upload failed ({e}), composing CTA slide dynamically...")
 
         # 1. Get image: Imagen 3 → Pollinations → gradient fallback
         top_img = None
@@ -154,7 +159,7 @@ class VisualEngine:
 
         # 9. Save, upload, clean up
         canvas = canvas.convert("RGB")
-        temp_path = os.path.join(SCRIPT_DIR, f"_temp_slide_{idx}.png")
+        temp_path = os.path.join(TEMP_DIR, f"_temp_slide_{idx}.png")
         canvas.save(temp_path, "PNG")
         logger.info(f"  Uploading slide {idx+1} to catbox.moe...")
         try:
@@ -346,7 +351,7 @@ class VisualEngine:
                         "https://catbox.moe/user/api.php",
                         data={"reqtype": "fileupload"},
                         files={"fileToUpload": (os.path.basename(file_path), f, "image/png")},
-                        timeout=60,
+                        timeout=20,
                     )
                 if resp.status_code == 200 and resp.text.strip().startswith("https://"):
                     return resp.text.strip()

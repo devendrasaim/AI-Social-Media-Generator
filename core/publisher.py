@@ -52,6 +52,16 @@ def publish_instagram(caption_data, visual_urls):
     publishable_urls = _filter_publishable_urls(visual_urls)
     logger.info(f"Publishing with {len(publishable_urls)}/{len(visual_urls)} images")
 
+    if not publishable_urls:
+        logger.error("No publishable image URLs — all uploads failed. Skipping Blotato submit.")
+        results.append({
+            "platform": "instagram",
+            "post_url": "FAILED",
+            "post_id": "N/A",
+            "status": "No images to publish (all uploads failed)",
+        })
+        return results
+
     # Instagram hard limit: 2200 characters
     caption = caption_data.get("caption", "")
     if len(caption) > 2200:
