@@ -42,37 +42,34 @@ BODY_COLOR = (255, 255, 255)
 class VisualEngine:
     """Composes carousel slides: topographic bg + gradient headline + image card + body text."""
 
-    def generate_carousel_urls(self, slide_data):
-        """Generate catbox.moe URLs for each carousel slide."""
-        urls = []
+    def generate_carousel_slides(self, slide_data):
+        """Compose each carousel slide and return local file paths."""
+        paths = []
         total = len(slide_data)
         for i, slide in enumerate(slide_data):
-            headline    = slide.get("headline", "")
-            key_point   = slide.get("key_point", "")
+            headline     = slide.get("headline", "")
+            key_point    = slide.get("key_point", "")
             image_prompt = slide.get("image_prompt", headline)
-            is_last     = (i == total - 1)
+            is_last      = (i == total - 1)
             logger.info(f"Composing slide {i+1}/{total}: {headline or '(CTA)'}")
 
-            url = self._compose_slide(i, headline, key_point, image_prompt, is_last)
-            if url:
-                urls.append(url)
-                logger.info(f"  Slide {i+1} ready: {url}")
+            path = self._compose_slide(i, headline, key_point, image_prompt, is_last)
+            if path:
+                paths.append(path)
+                logger.info(f"  Slide {i+1} ready: {path}")
             else:
                 logger.error(f"  Slide {i+1}: failed to generate, skipping")
 
-        return urls
+        return paths
 
     def _compose_slide(self, idx, headline, key_point, image_prompt, is_last):
-        """Compose a single 1080x1080 slide and upload to catbox.moe."""
+        """Compose a single 1080x1080 slide and return its local file path."""
         # 0. Optimization for Last Slide (Static CTA)
         if is_last:
             static_cta_path = os.path.join(RESOURCES_DIR, "last_slide_cta.jpg")
             if os.path.exists(static_cta_path):
                 logger.info("  Using static CTA slide from resources (saving API tokens)")
-                try:
-                    return self._upload_to_catbox(static_cta_path)
-                except Exception as e:
-                    logger.warning(f"  Static CTA upload failed ({e}), composing CTA slide dynamically...")
+                return static_cta_path
 
         # 1. Get image: Imagen 3 → Pollinations → gradient fallback
         top_img = None
@@ -157,24 +154,12 @@ class VisualEngine:
                 wrap_chars=44
             )
 
-        # 9. Save, upload, clean up
+        # 9. Save to temp dir and return local path
+        os.makedirs(TEMP_DIR, exist_ok=True)
         canvas = canvas.convert("RGB")
-        temp_path = os.path.join(TEMP_DIR, f"_temp_slide_{idx}.png")
-        canvas.save(temp_path, "PNG")
-        logger.info(f"  Uploading slide {idx+1} to catbox.moe...")
-        try:
-            try:
-                url = self._upload_to_catbox(temp_path)
-            except Exception as e:
-                logger.error(f"  Catbox upload failed: {e}")
-                url = None
-        finally:
-            try:
-                os.remove(temp_path)
-            except OSError:
-                pass
-
-        return url
+        temp_path = os.path.join(TEMP_DIR, f"_slide_{idx}.jpg")
+        canvas.save(temp_path, "JPEG", quality=95)
+        return temp_path
 
     # ── Background ─────────────────────────────────────────────────────────────
 
@@ -337,25 +322,3 @@ class VisualEngine:
         except OSError:
             return ImageFont.load_default()
 
-    @staticmethod
-    def _upload_to_catbox(file_path):
-        """Upload a file to catbox.moe. Returns direct URL. Retries 3x."""
-        import time
-        last_err = None
-        for attempt in range(3):
-            if attempt > 0:
-                time.sleep(3)
-            try:
-                with open(file_path, "rb") as f:
-                    resp = requests.post(
-                        "https://catbox.moe/user/api.php",
-                        data={"reqtype": "fileupload"},
-                        files={"fileToUpload": (os.path.basename(file_path), f, "image/png")},
-                        timeout=20,
-                    )
-                if resp.status_code == 200 and resp.text.strip().startswith("https://"):
-                    return resp.text.strip()
-                last_err = f"{resp.status_code} '{resp.text.strip()[:100]}'"
-            except Exception as e:
-                last_err = str(e)
-        raise RuntimeError(f"Catbox upload failed after 3 attempts: {last_err}")

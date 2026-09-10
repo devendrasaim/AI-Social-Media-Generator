@@ -6,7 +6,6 @@ import requests
 from google import genai
 from google.genai import types
 from .config import GEMINI_API_KEY, PERPLEXITY_API_KEY, PERPLEXITY_BASE
-from .blotato_client import request_api, poll_until_done
 
 logger = logging.getLogger(__name__)
 
@@ -25,26 +24,6 @@ def _normalize_youtube_url(url):
     if video_id:
         return f"https://www.youtube.com/watch?v={video_id}", video_id
     return url, None
-
-
-def _extract_via_blotato(url):
-    """Try extracting content via Blotato API."""
-    data = request_api("POST", "/source-resolutions-v3", {
-        "source": {"sourceType": "youtube", "url": url}
-    })
-    submission_id = data["id"]
-    logger.debug(f"Submission ID: {submission_id}")
-
-    result = poll_until_done(
-        f"/source-resolutions-v3/{submission_id}",
-        done_statuses=["completed"],
-    )
-    title = result.get("title", "")
-    content = result.get("content", "")
-    if not content:
-        msg = result.get("message", "No content extracted")
-        raise RuntimeError(f"Blotato returned no content: {msg}")
-    return {"title": title, "content": content}
 
 
 def _extract_via_transcript(video_id, url):
@@ -70,29 +49,19 @@ def _extract_via_transcript(video_id, url):
 
 
 def extract_youtube(url):
-    """Extract video content — tries Blotato first, then direct transcript."""
+    """Extract video content via direct transcript."""
     logger.info("Extracting content from YouTube video...")
     url, video_id = _normalize_youtube_url(url)
     logger.info(f"URL: {url}")
 
-    # Try Blotato first
-    logger.info("Trying Blotato extraction...")
-    try:
-        result = _extract_via_blotato(url)
-        logger.info(f"Done! (Blotato) Title: {result['title'][:60]}")
-        return result
-    except Exception as e:
-        logger.warning(f"Blotato failed: {e}")
-
-    # Fallback: direct transcript extraction
     if video_id:
-        logger.info("Trying direct transcript extraction...")
+        logger.info("Extracting transcript directly...")
         try:
             result = _extract_via_transcript(video_id, url)
-            logger.info(f"Done! (Direct) Title: {result['title'][:60]}")
+            logger.info(f"Done! Title: {result['title'][:60]}")
             return result
         except Exception as e:
-            logger.warning(f"Direct extraction also failed: {e}")
+            logger.warning(f"Transcript extraction failed: {e}")
 
     raise RuntimeError("Could not extract content from this YouTube video.")
 

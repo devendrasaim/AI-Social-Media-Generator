@@ -8,6 +8,8 @@ load_dotenv()
 BLOTATO_API_KEY = os.getenv("BLOTATO_API_KEY")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 PERPLEXITY_API_KEY = os.getenv("PERPLEXITY_API_KEY")
+INSTAGRAM_USERNAME = os.getenv("INSTAGRAM_USERNAME")
+INSTAGRAM_PASSWORD = os.getenv("INSTAGRAM_PASSWORD")
 BLOTATO_BASE = "https://backend.blotato.com/v2"
 PERPLEXITY_BASE = "https://api.perplexity.ai"
 IMAGEN_MODEL = os.getenv("IMAGEN_MODEL", "imagen-4.0-generate-001")
@@ -44,9 +46,9 @@ def setup_logging(verbose=False):
         sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
 def validate_environment():
-    if not BLOTATO_API_KEY:
-        logging.error("BLOTATO_API_KEY not set. Add it to your .env file.")
-        sys.exit(1)
     if not GEMINI_API_KEY:
         logging.warning("GEMINI_API_KEY not set. Will use template-based captions.")
         logging.warning("  For AI-generated captions, add GEMINI_API_KEY to your .env file.")
+    if not INSTAGRAM_USERNAME or not INSTAGRAM_PASSWORD:
+        logging.error("INSTAGRAM_USERNAME and INSTAGRAM_PASSWORD must be set in .env")
+        sys.exit(1)

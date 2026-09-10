@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import os
 import sys
+import shutil
 import argparse
 import logging
-import requests
 from core.config import setup_logging, validate_environment, LOG_FILE
 from core.content_engine import extract_youtube, fetch_from_perplexity, generate_captions
 from core.visual_engine import VisualEngine
@@ -11,8 +11,8 @@ from core.publisher import publish_instagram, log_to_csv
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Repurpose YouTube Video -> Instagram post using Gemini and Blotato.",
-        epilog="Requires BLOTATO_API_KEY and GEMINI_API_KEY in .env file."
+        description="Repurpose YouTube Video -> Instagram post using Gemini and instagrapi.",
+        epilog="Requires INSTAGRAM_USERNAME, INSTAGRAM_PASSWORD, and GEMINI_API_KEY in .env file."
     )
 
     parser.add_argument("youtube_url", nargs="?", default=None,
@@ -58,7 +58,7 @@ def main():
         content_data = generate_captions(video_data["title"], video_data["content"], args.tone)
 
         ve = VisualEngine()
-        visual_urls = ve.generate_carousel_urls(content_data.get("slides", []))
+        slide_paths = ve.generate_carousel_slides(content_data.get("slides", []))
 
         # Append hashtags to caption if not already included
         caption = content_data.get("caption", "")
@@ -70,7 +70,7 @@ def main():
         logger.error(f"Pipeline failed during extraction/generation: {e}")
         sys.exit(1)
 
-    # 3. Download & Review
+    # 3. Copy slides to review folder
     logger.info("\n" + "=" * 60)
     logger.info("   POST REVIEW (CAROUSEL)")
     logger.info("=" * 60)
@@ -78,22 +78,15 @@ def main():
 
     review_dir = os.path.join(os.getcwd(), "carousel_review")
     os.makedirs(review_dir, exist_ok=True)
-    logger.info(f"Downloading {len(visual_urls)} images for your review to: {review_dir}")
+    logger.info(f"Copying {len(slide_paths)} slides for your review to: {review_dir}")
 
-    local_files = []
-    for i, url in enumerate(visual_urls):
+    for i, path in enumerate(slide_paths):
         try:
-            resp = requests.get(url, stream=True, timeout=30,
-                               headers={"User-Agent": "Mozilla/5.0"})
-            resp.raise_for_status()
-            file_path = os.path.join(review_dir, f"slide_{i+1}.jpg")
-            with open(file_path, 'wb') as f:
-                for chunk in resp.iter_content(chunk_size=8192):
-                    f.write(chunk)
-            local_files.append(file_path)
-            print(f"Slide {i+1}: {file_path}")
+            dest = os.path.join(review_dir, f"slide_{i+1}{os.path.splitext(path)[1]}")
+            shutil.copy(path, dest)
+            print(f"Slide {i+1}: {dest}")
         except Exception as e:
-            logger.warning(f"Failed to download image {i+1}: {e}")
+            logger.warning(f"Failed to copy slide {i+1} for review: {e}")
 
     logger.info("=" * 60)
 
@@ -103,23 +96,38 @@ def main():
             confirm = input("\nPublish post? (yes/no): ").strip().lower()
             if confirm not in ("yes", "y"):
                 logger.info("Cancelled by user. No post published.")
+                _cleanup_slides(slide_paths)
                 sys.exit(0)
         except (EOFError, KeyboardInterrupt):
             logger.info("\nCancelled by user.")
+            _cleanup_slides(slide_paths)
             sys.exit(0)
 
     # 5. Publish & Log
-    results = publish_instagram(content_data, visual_urls)
+    results = publish_instagram(content_data, slide_paths)
+    _cleanup_slides(slide_paths)
+
     if results:
         log_to_csv(LOG_FILE, source_url, results)
         logger.info(f"\nDone! Post log saved to: {LOG_FILE}")
-        all_failed = all(r.get("post_url") == "FAILED" or r.get("status", "").startswith("FAILED") or r.get("status") == "failed" for r in results)
+        all_failed = all(r.get("post_url") == "FAILED" for r in results)
         if all_failed:
             logger.error("All publish attempts failed. Check logs above for details.")
             sys.exit(1)
     else:
-        logger.error("No results returned. Ensure Instagram is connected.")
+        logger.error("No results returned. Ensure Instagram credentials are set in .env.")
         sys.exit(1)
+
+
+def _cleanup_slides(slide_paths):
+    """Delete temp slide files after publish (or cancel)."""
+    for path in slide_paths:
+        try:
+            if path and os.path.exists(path) and "temp" in path.lower():
+                os.remove(path)
+        except OSError:
+            pass
+
 
 if __name__ == "__main__":
     main()

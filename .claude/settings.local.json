@@ -1,7 +1,15 @@
 {
   "permissions": {
     "allow": [
-      "Bash(python -c \":*)"
+      "Bash(python -c \":*)",
+      "PowerShell(schtasks /query /fo LIST /v | Select-String -Pattern \"TaskName|Status|Next Run|Last Run|Last Result\" -Context 0,0 | Where-Object { $_ -match \"Social|automate|instagram|AI\" })",
+      "PowerShell(schtasks /query /tn \"\\\\AI Social Media Generator\" /fo LIST /v)",
+      "Bash(pip install *)",
+      "Bash(python -c \"import instagrapi; print\\('instagrapi version:', instagrapi.__version__\\)\")",
+      "Bash(python -c ' *)",
+      "Bash(python main.py --perplexity \"top AI tools for creators in 2026\" --tone \"casual and inspiring\" --verbose)",
+      "Bash(python main.py --perplexity \"top AI tools for creators in 2026\" --tone \"casual and inspiring\")",
+      "Bash(python setup_instagram.py)"
     ]
   }
 }

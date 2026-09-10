@@ -28,8 +28,12 @@ def acquire_lock():
                 old_pid = int(f.read().strip())
             # Check if process is actually running
             if os.name == 'nt':
-                # Windows check
-                subprocess.check_output(f'tasklist /fi "PID eq {old_pid}"', shell=True)
+                # tasklist always exits 0 on Windows; check output for the PID
+                output = subprocess.check_output(
+                    f'tasklist /fi "PID eq {old_pid}"', shell=True
+                ).decode('utf-8', errors='replace')
+                if str(old_pid) not in output:
+                    raise ProcessLookupError(f"PID {old_pid} not found")
             else:
                 # Unix check
                 os.kill(old_pid, 0)
