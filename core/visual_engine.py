@@ -252,11 +252,30 @@ class VisualEngine:
 
     @staticmethod
     def _download_imagen_image(image_prompt):
-        """Generate image with Gemini Imagen. Returns PIL Image."""
+        """Generate image with Gemini / Imagen. Returns PIL Image."""
         if not GEMINI_API_KEY:
             raise RuntimeError("GEMINI_API_KEY not set")
-        client = genai.Client(api_key=GEMINI_API_KEY,
-                              http_options={"api_version": "v1beta"})
+        client = genai.Client(api_key=GEMINI_API_KEY)
+
+        # 1. Try modern Gemini image generation (works directly with Gemini Developer API key)
+        model_name = os.getenv("IMAGEN_MODEL", "gemini-2.5-flash-image")
+        if "imagen" in model_name.lower():
+            model_name = "gemini-2.5-flash-image"
+
+        try:
+            prompt_text = f"Cinematic, high quality, professional photography, 16:9 widescreen composition, no text: {image_prompt}"
+            response = client.models.generate_content(
+                model=model_name,
+                contents=prompt_text,
+            )
+            if response.candidates and response.candidates[0].content:
+                for part in response.candidates[0].content.parts:
+                    if getattr(part, 'inline_data', None) and part.inline_data.data:
+                        return Image.open(BytesIO(part.inline_data.data)).convert("RGB")
+        except Exception as e:
+            logger.debug(f"Gemini generate_content image generation failed: {e}")
+
+        # 2. Fallback to generate_images (for Vertex AI / Enterprise setups)
         response = client.models.generate_images(
             model=IMAGEN_MODEL,
             prompt=image_prompt,

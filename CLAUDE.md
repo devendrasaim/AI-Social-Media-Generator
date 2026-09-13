@@ -1,76 +1,110 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Guidance for Claude Code (claude.ai/code) when working in this repository.
+
+## What this project is
+
+A Python command-line tool that turns a topic or a YouTube video into a 3-slide
+Instagram carousel and publishes it. No web framework, no GUI, no dashboard —
+CLI only. See [README.md](README.md) for the user-facing instructions.
 
 ## Setup
 
-1. Add API keys to `.env` (never ask for keys in chat):
-   - `BLOTATO_API_KEY` — required, from [Blotato dashboard](https://app.blotato.com)
-   - `GEMINI_API_KEY` — optional (template captions if missing), from [Google AI Studio](https://aistudio.google.com)
-   - `PERPLEXITY_API_KEY` — required only for `--perplexity` mode
-   - `IMAGEN_MODEL` — optional, defaults to `imagen-4.0-generate-001`
-2. Install dependencies: `pip install -r requirements.txt`
-3. Optional: place `resources/last_slide_cta.jpg` (1080×1080) to use a static CTA slide instead of generating one
+1. Secrets live in `.env` (copy from `.env.example`). **Never ask the user to
+   paste API keys or passwords into the chat.** If a key is missing, tell them
+   which line of `.env` to edit.
+   - `INSTAGRAM_USERNAME` / `INSTAGRAM_PASSWORD` — required; `main.py` exits if absent
+   - `GEMINI_API_KEY` — optional but expected; without it, captions fall back to a
+     template and images fall back to Pollinations or a plain gradient
+   - `PERPLEXITY_API_KEY` — required for `--perplexity` mode (raises if missing)
+   - `IMAGEN_MODEL` — optional; note `visual_engine` rewrites any value containing
+     "imagen" to `gemini-2.5-flash-image`
+   - `DISCORD_WEBHOOK_URL`, `SMTP_*`, `NOTIFICATION_EMAIL` — optional; the notifier
+     silently no-ops when unset
+2. `pip install -r requirements.txt`
+3. `python setup_instagram.py` once — it solves the login challenge and writes
+   `instagram_session.json`. `publisher._get_client()` **raises** if that file is
+   missing; it never logs in cold.
+4. Optional: put a 1080×1080 `resources/last_slide_cta.jpg` in place and the third
+   slide uses it directly instead of generating one.
 
 ## Running
 
 ```
-python main.py <youtube-url> --tone casual
-python main.py --perplexity "AI tools 2026" --tone casual
-python main.py <youtube-url> --tone casual --publish   # skip review prompt
+python main.py <youtube-url>                        # review prompt, then publish
+python main.py --perplexity "AI tools 2026"         # topic instead of a video
+python main.py --perplexity "topic" --tone casual --publish --verbose
+python automate.py                                  # unattended: queue -> publish
 ```
 
 Claude Code skill: `/repurpose-youtube-video <youtube-url>`
 
 ## Architecture
 
-Modular pipeline in `core/`: Extract → Captions → Visuals → Review → Publish → Log
+Pipeline: **source → captions → visuals → review → publish → log**
 
-| Module | Role |
-|--------|------|
-| `main.py` | argparse CLI entrypoint |
-| `core/config.py` | env vars, logging, constants |
-| `core/blotato_client.py` | Blotato API wrapper (request, poll, accounts) |
-| `core/content_engine.py` | YouTube/Perplexity extraction + Gemini caption generation |
-| `core/visual_engine.py` | Pillow slide composition + catbox.moe upload |
-| `core/publisher.py` | Instagram publishing + CSV logging |
+| File | Role |
+|---|---|
+| `main.py` | argparse CLI; orchestrates the whole pipeline; handles the review prompt and temp cleanup |
+| `automate.py` | unattended runner: PID lock → queue refill → maintenance → pop topic → subprocess `main.py --publish` → notify |
+| `core/config.py` | env vars, logging setup, all shared paths, `validate_environment()` |
+| `core/content_engine.py` | `extract_youtube()`, `fetch_from_perplexity()`, `generate_captions()` |
+| `core/visual_engine.py` | `VisualEngine` — composes 1080×1080 slides with Pillow |
+| `core/publisher.py` | instagrapi session reuse, carousel/photo upload, CSV log |
+| `core/brainstormer.py` | Gemini-generated topics when `topics_queue.txt` drops below 3 |
+| `core/notifier.py` | Discord webhook + SMTP alerts |
+| `core/maintenance.py` | age-based file cleanup |
 
-Fallback chains — always preserve:
+**Publishing is instagrapi, not Blotato.** `BLOTATO_API_KEY` and `BLOTATO_BASE`
+still sit in `config.py` but nothing reads them — there is no `blotato_client.py`.
+Don't reintroduce Blotato without being asked.
+
+## Fallback chains — always preserve these
+
+The user's standing preference is *fallbacks over failures*. Every one of these
+degrades instead of raising:
 
 | Step | Primary | Fallback 1 | Fallback 2 | Fallback 3 |
-|------|---------|------------|------------|------------|
-| Extract | Blotato `/source-resolutions-v3` | youtube-transcript-api + oEmbed | — | — |
-| Captions | gemini-2.5-flash | gemini-2.0-flash | gemini-2.0-flash-lite | Template-based |
-| Visuals | Gemini Imagen 3 | Pollinations.ai | Dark gradient (Pillow) | — |
-| Publish | Blotato `/posts` | — | — | — |
+|---|---|---|---|---|
+| Captions | gemini-2.5-flash | gemini-2.0-flash | gemini-2.0-flash-lite | `_generate_template_caption()` |
+| Caption JSON | `json.loads` | brace-slice repair | template caption | — |
+| Images | `gemini-2.5-flash-image` | `generate_images` (Vertex) | Pollinations.ai (3 retries) | `_make_gradient_fallback()` |
+| Fonts | `fonts/GoogleSans-*.ttf` | `ImageFont.load_default()` | — | — |
 
-## Slide Structure (2 slides per post)
+YouTube extraction is the one step with no fallback: transcript missing → hard error.
 
-- **Slide 1** — content: Gemini headline + key point + concept image
-- **Slide 2** — CTA: bold scroll-stopping image + "Follow @myaiguru9 for more AI tips"
-  - If `resources/last_slide_cta.jpg` exists, it is used directly (saves API tokens)
+## Slide structure (3 slides)
 
-## Visual Layout (1080×1080 — design.md)
+Gemini is asked for exactly three: two content slides whose `key_point` must open
+with a question, and a third fixed "FOLLOW FOR MORE" CTA.
 
-- **Header 15%** (0–162px): ALL CAPS headline, Google Sans Bold, purple→cyan gradient fill
-- **Image zone 55%** (162–756px): AI image as rounded card (50px pad, 20px corners, drop shadow)
-- **Body zone 30%** (756–1080px): key_point text, white, Google Sans Medium, 1.4 line spacing
+## Visual layout (1080×1080 — see design.md)
 
-Fonts: `fonts/GoogleSans-Bold.ttf`, `fonts/GoogleSans-Medium.ttf` (fallback: PIL default)
+- **Header 15%** (0–162px): ALL CAPS headline, Google Sans Bold 62px, purple
+  `(147,51,234)` → cyan `(0,200,255)` gradient fill, centered
+- **Image zone 55%** (162–756px): rounded card, 50px pad, 20px radius, blurred drop shadow
+- **Body zone 30%** (756–1080px): Google Sans Medium 34px white, 1.4 line spacing;
+  text before the first `?` is drawn in red `(255,60,60)`
+- Background: black with 45 sine-wave "topographic" lines in `(18,18,32)`
 
-## Blotato API Quirks
+Slides are written to `temp/_slide_N.jpg`, copied to `carousel_review/` for review,
+and the temp copies are deleted after publish or cancel.
 
-- Base URL: `https://backend.blotato.com/v2`, auth header: `blotato-api-key`
-- Responses wrapped in `{"item": {...}}` — always unwrap via `data.get("item", data)`
-- Post ID: try `postSubmissionId` first, fallback to `id`
-- Publishing works with Blotato-hosted URLs **and** catbox.moe URLs
+## Gotchas
 
-## Gemini API
-
-- Uses `google-genai` SDK (not the older `google-generativeai`)
-- Text: model fallback chain (2.5-flash → 2.0-flash → 2.0-flash-lite) handles 429/403/404
-- Images: `IMAGEN_MODEL` env var (default `imagen-4.0-generate-001`), requires billing or API access
+- Uses the `google-genai` SDK, not the older `google-generativeai`.
+- `automate.py` redefines `QUEUE_FILE`/`LOG_FILE`/`LOCK_FILE` locally, shadowing the
+  `core.config` imports at the top. Change both if you move those paths.
+- `run_generator.bat` contains a hardcoded path from a different machine and is broken
+  as committed — the user must edit it for Task Scheduler.
+- Instagram captions are hard-capped at 2200 chars; `publisher` trims on a newline.
+- Windows UTF-8 stdout is patched in both `config.setup_logging()` and `automate.py`.
+- `workflow.md`, `per_asst.md`, and `.claude/skills/repurpose-youtube-video/SKILL.md`
+  still describe the old Blotato flow and a `repurpose.py` that no longer exists.
+  Treat the code as the source of truth, not those files.
 
 ## Output
 
-`published_posts.csv` — append-only log: `timestamp, youtube_url, platform, post_url, post_id, status`
+`published_posts.csv` — append-only:
+`timestamp, youtube_url, platform, post_url, post_id, status`
+(the `youtube_url` column also holds `perplexity:<topic>` for topic runs)
